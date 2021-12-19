@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oil{% endblock %}
+
+{% block body %}
+    <h1>Oil</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ oil.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ oil.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ oil.description }}</td>
+            </tr>
+            <tr>
+                <th>Capacity</th>
+                <td>{{ oil.capacity }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ oil.price }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ oil.active ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ oil.createdAt ? oil.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_oils_index') }}">back to list</a>
+
+    <a href="{{ path('admin_oils_edit', {'id': oil.id}) }}">edit</a>
+
+    {{ include('admin_oils/_delete_form.html.twig') }}
+{% endblock %}

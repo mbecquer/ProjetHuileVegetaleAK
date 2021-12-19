@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Oil{% endblock %}
+
+{% block body %}
+    <h1>Create new Oil</h1>
+
+    {{ include('admin_oils/_form.html.twig') }}
+
+    <a href="{{ path('admin_oils_index') }}">back to list</a>
+{% endblock %}

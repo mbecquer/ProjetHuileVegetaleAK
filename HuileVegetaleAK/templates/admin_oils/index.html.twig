@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oil index{% endblock %}
+
+{% block body %}
+    <h1>Oil index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Price</th>
+                <th>Active</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for oil in oil %}
+            <tr>
+                <td>{{ oil.id }}</td>
+                <td>{{ oil.name }}</td>
+                <td>{{ oil.description }}</td>
+                <td>{{ oil.capacity }}</td>
+                <td>{{ oil.price }}</td>
+                <td>{{ oil.active ? 'Yes' : 'No' }}</td>
+                <td>{{ oil.createdAt ? oil.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_oils_show', {'id': oil.id}) }}">show</a>
+                    <a href="{{ path('admin_oils_edit', {'id': oil.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_oils_new') }}">Create new</a>
+{% endblock %}
