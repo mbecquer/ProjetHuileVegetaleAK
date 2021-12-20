@@ -49,16 +49,6 @@ class AdminFamiliesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_families_show", methods={"GET"})
-     */
-    public function show(Family $family): Response
-    {
-        return $this->render('admin_families/show.html.twig', [
-            'family' => $family,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="admin_families_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Family $family, EntityManagerInterface $entityManager): Response

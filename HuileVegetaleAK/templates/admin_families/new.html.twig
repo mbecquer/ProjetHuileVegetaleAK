@@ -1,11 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Family{% endblock %}
+{% block title %}New Family
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Family</h1>
+	<h1>Create new Family</h1>
 
-    {{ include('admin_families/_form.html.twig') }}
+	<div class="section">
+		<div class="form-login">
+			<h1 class="section-title">Ajouter une nouvelle famille</h1>
+			<div class="form-container">
+				{{ form_start(form) }}
+				<div class="form-input">
+					{{form_row(form.name)}}</div>
+				<div class="form-input">
+					{{form_row(form.active)}}</div>
+				<div class="form-input">
+					{{form_row(form.story)}}</div>
+				<button class="button">{{ button_label|default('Enregistrer') }}</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
 
-    <a href="{{ path('admin_families_index') }}">back to list</a>
+	</div>
 {% endblock %}

@@ -1,39 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Family index{% endblock %}
+{% block title %}Family index
+{% endblock %}
 
 {% block body %}
-    <h1>Family index</h1>
+	<h1>Family index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Active</th>
-                <th>Story</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for family in families %}
-            <tr>
-                <td>{{ family.id }}</td>
-                <td>{{ family.name }}</td>
-                <td>{{ family.active ? 'Yes' : 'No' }}</td>
-                <td>{{ family.story }}</td>
-                <td>
-                    <a href="{{ path('admin_families_show', {'id': family.id}) }}">show</a>
-                    <a href="{{ path('admin_families_edit', {'id': family.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('admin_families_new') }}">Create new</a>
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Administration Familles</h1>
+			<div>
+				<a href="{{ path('admin_families_new') }}">
+					<button class="button">Ajouter nouvelle famille</button>
+				</a>
+			</div>
+
+			{% for family in families|sort((a, b) => a.name <=> b.name) %}
+				<div class="admin-summary-list">
+					<div class="admin-info">
+						{{family.name}}
+						{{ family.active ? 'Yes' : 'No' }}
+						{{family.story}}
+					</div>
+					<div class="admin-buttons">
+						<a href="{{ path('admin_families_edit', {'id': family.id}) }}">
+							<button class="button edit-button">Modifier</button>
+						</a>
+						<form method="post" action="{{ path('admin_families_delete', {'id': family.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
+							<button class="button delete-button">Supprimer</button>
+						</form>
+					</div>
+				</div>
+			{% else %}
+				no family found
+			{% endfor %}
+
+		</div>
+	</div>
+
 {% endblock %}
