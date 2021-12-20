@@ -1,45 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Oil index{% endblock %}
+{% block title %}{{title}}
+{% endblock %}
 
 {% block body %}
-    <h1>Oil index</h1>
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Administration Huiles</h1>
+			<div>
+				<a href="{{ path('admin_oils_new') }}">
+					<button class="button">Ajouter nouvelle huile</button>
+				</a>
+			</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Capacity</th>
-                <th>Price</th>
-                <th>Active</th>
-                <th>Created_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for oil in oil %}
-            <tr>
-                <td>{{ oil.id }}</td>
-                <td>{{ oil.name }}</td>
-                <td>{{ oil.description }}</td>
-                <td>{{ oil.capacity }}</td>
-                <td>{{ oil.price }}</td>
-                <td>{{ oil.active ? 'Yes' : 'No' }}</td>
-                <td>{{ oil.createdAt ? oil.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_oils_show', {'id': oil.id}) }}">show</a>
-                    <a href="{{ path('admin_oils_edit', {'id': oil.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+			{% for oil in oil|sort((a, b) => a.name <=> b.name) %}
+				<div class="admin-summary-list">
+					<div class="admin-info">
+						{{oil.name}}
+						{{ oil.active ? 'Yes' : 'No' }}
+					</div>
+					<div class="admin-buttons">
+						<a href="{{ path('admin_oils_edit', {'id': oil.id}) }}">
+							<button class="button edit-button">Modifier</button>
+						</a>
+						<form method="post" action="{{ path('admin_oils_delete', {'id': oil.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ oil.id) }}">
+							<button class="button delete-button">Supprimer</button>
+						</form>
 
-    <a href="{{ path('admin_oils_new') }}">Create new</a>
+					</div>
+				</div>
+			{% else %}
+				no oil found
+			{% endfor %}
+
+		</div>
+	</div>
+
+
 {% endblock %}

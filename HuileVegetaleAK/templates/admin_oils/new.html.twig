@@ -1,11 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Oil{% endblock %}
+{% block title %}New Oil
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Oil</h1>
+	<div class="section">
+		<div class="form-login">
+			<h1 class="section-title">Ajouter une nouvelle huile</h1>
+			<div class="form-container">
+				{{ form_start(form) }}
+				<div class="form-input">
+					{{form_row(form.name)}}</div>
+				<div class="form-input">
+					{{form_row(form.description)}}</div>
+				<div class="form-input">
+					{{form_row(form.capacity)}}</div>
+				<div class="form-input">
+					{{form_row(form.price)}}</div>
+				<div class="form-input">
+					{{form_row(form.active)}}</div>
+				<div class="form-input">
+					{{form_row(form.created_at)}}</div>
+				<button class="button">{{ button_label|default('Save') }}</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
 
-    {{ include('admin_oils/_form.html.twig') }}
+	</div>
 
-    <a href="{{ path('admin_oils_index') }}">back to list</a>
+
 {% endblock %}

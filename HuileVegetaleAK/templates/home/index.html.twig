@@ -4,7 +4,92 @@
 
 {% block body %}
 
+	<main id="home">
 
-    <h1>Hello</h1>
+		{% for message in app.flashes('success') %}
+			<div class="success-message">
+				{{message}}
+			</div>
+		{% endfor %}
+		<!--présentation huile vegetale-->
+		<section>
+			<img src="{{asset('/assets/Marché.JPG')}}" class="home-img"/>
+			<div class="home-container container grid">
+				<div class="home-info">
+					<span class="subtitle">Découvrez nos huiles</span>
+					<h1 class="title">
+						Les huiles végétales
+						<br/>
+						un véritable élixir
+					</h1>
+					<a href="{{path('oils')}}" class="button">Découvrir</a>
+				</div>
+			</div>
+		</section>
+
+		<!--elixir de jouvence-->
+		<section class="section">
+			<div class="elixir-container container grid">
+				<div class="elixir-info">
+					<h2 class="section-title elixir-title">Elixir de jouvence</h2>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus aspernatur nulla, consequatur, deserunt dolores quasi voluptatem sequi assumenda ratione quisquam iste tenetur ipsam. Tempore blanditiis molestiae, quis provident repellat dolorem!</p>
+				</div>
+				<div class="elixir-img">
+					<div class="elixir-img-overlay">
+						<img class="elixir-img-two" src="{{asset('/assets/Page Ac.JPG')}}"/>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- qui sommes nous -->
+		<section class="section">
+			<div class="qui-container container">
+				<h2 class="section-title">Qui sommes nous</h2>
+				<div class="qui-info">
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus aspernatur nulla, consequatur, deserunt dolores quasi voluptatem sequi assumenda ratione quisquam iste tenetur ipsam. Tempore blanditiis molestiae, quis provident repellat dolorem!</p>
+
+				</div>
+				<div class="qui-img">
+					<div class="qui-img-overlay">
+						<img class="elixir-img-two" src="{{asset('/assets/Image JPEG 9.jpeg')}}"/>
+					</div>
+					<div class="qui-img-overlay">
+						<img class="elixir-img-two" src="{{asset('/assets/Image JPEG 10.jpeg')}}"/>
+					</div>
+					<div class="qui-img-overlay">
+						<img class="elixir-img-two" src="{{asset('/assets/oilbg.jpeg')}}"/>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--nos valeurs et nos engagements-->
+		<section class="section">
+			<div class="valeur-container container grid">
+				<div class="valeur-info">
+					<h2 class="section-title valeur-title">
+						Nos valeurs et nos engagements
+					</h2>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus aspernatur nulla, consequatur, deserunt dolores quasi voluptatem sequi assumenda ratione quisquam iste tenetur ipsam. Tempore blanditiis molestiae, quis provident repellat dolorem!</p>
+
+				</div>
+				<div class="valeur-liste">
+					<img class="elixir-img-two" src="{{asset('/assets/Presse hydraulique.JPG')}}">
+				</div>
+			</div>
+		</section>
+		<!-- contact -->
+		<section>
+			<div class="contact-bg">
+				<div class="contact-container ">
+					<h2 class="section-title contact-title">Contact</h2>
+					<p class="contact-description">
+						Contactez nous pour avoir plus d'informations sur nos produits
+					</p>
+
+				</div>
+			</div>
+		</section>
+	</main>
+   
 
 {% endblock %}

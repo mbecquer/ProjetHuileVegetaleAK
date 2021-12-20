@@ -23,6 +23,7 @@ class AdminOilsController extends AbstractController
     {
         return $this->render('admin_oils/index.html.twig', [
             'oil' => $oilRepository->findAll(),
+            'title'=>'Administration Huiles'
         ]);
     }
 
@@ -48,15 +49,7 @@ class AdminOilsController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="admin_oils_show", methods={"GET"})
-     */
-    public function show(Oil $oil): Response
-    {
-        return $this->render('admin_oils/show.html.twig', [
-            'oil' => $oil,
-        ]);
-    }
+   
 
     /**
      * @Route("/{id}/edit", name="admin_oils_edit", methods={"GET", "POST"})

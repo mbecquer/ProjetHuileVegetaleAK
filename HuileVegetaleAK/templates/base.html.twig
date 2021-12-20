@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta
+		charset="UTF-8">
+		<!--css-->
+		<link rel="stylesheet" href="/css/huiles.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/form.css">
+		<link rel="stylesheet" href="/css/oil.css">
+		<link rel="stylesheet" href="/css/carousel.css">
+		<link rel="stylesheet" href="/css/admin.css">
+		<link rel="stylesheet" href="/css/blog.css">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		<link
-		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
@@ -17,23 +24,113 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body>
-		<a href="{{path('home')}}">home</a>
-		<a href="{{path('oils')}}">Huiles Végétales</a>
-		<a href="{{path('mentions')}}">Mentions légales</a>
+	<body id="home">
 
+		<header id="header">
+			<nav>
+				<a href="{{path('home')}}" title="Accueil"><img class="nav-logo" src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
+				<div class="nav-menu" id="nav-menu">
+					<ul class="nav-list">
+						<li>
+							<a href="{{path('oils')}}" class="nav-link">Huiles végétales</a>
+						</li>
+						<li>
+							<a href="{{path('admin_oils_index')}}" class="nav-link">Admin Huiles</a>
+						</li>
+						<li>
+							<a href="{{path('admin_families_index')}}" class="nav-link">Admin Familles</a>
+						</li>
+						<li>
+							<a href="{{path('admin_articles_index')}}" class="nav-link">Admin Articles</a>
+						</li>
+					
+						{% if is_granted("ROLE_ADMIN") %}
+							<li>
+								<a href="{{path('admin_oils_index')}}" class="nav-link">Admin Huiles</a>
+							</li>
+							<li>
+								<a href="{{path('admin_families_index')}}" class="nav-link">Admin Familles</a>
+							</li>
+							<li>
+								<a href="{{path('admin_articles_index')}}" class="nav-link">Admin Articles</a>
+							</li>
+							<li>
+								<a href="{{path('blog')}}" class="nav-link">Le blog</a>
+							</li>
+							<li>
+								<a href="{{path('cart')}}" class="nav-link">Mon panier</a>
+							</li>
 
-			<div>
-				<a href="{{path('blog')}}">Blog</a>
-				<a href="{{path('cart')}}">Panier</a>
-				<a href="{{path('admin_oils_index')}}">admin huiles</a>
-				<a href="{{path('admin_families_index')}}">admin familles</a>
-				<a href="{{path('admin_articles_index')}}">admin articles</a>
-				<a href="{{path('app_login')}}">Connexion</a>
-			</div>
-	
-
+						{% endif %}
+					</ul>
+					<div class="nav-account-mobile">
+						{% if is_granted("ROLE_ADMIN") %}
+							<details>
+								<summary>
+									<h2>Mon compte</h2>
+								</summary>
+								<div class="my-account">
+									{% if app.user %}
+										<span>
+											<i class="fa fa-user" aria-hidden="true"></i>
+											{{ app.user.username }}</span>
+									{% endif %}
+									<a href="{{path('app_login')}}">Connexion</a>
+									<a href="{{path('app_logout')}}">Déconnexion</a>
+								</div>
+							</details>
+						{% endif %}
+					</div>
+				</div>
+				<div class="nav-account">
+					{% if is_granted("ROLE_ADMIN") %}
+						<details>
+							<summary>Mon compte</summary>
+							<div class="my-account">
+								{% if app.user %}
+									<span>
+										<i class="fa fa-user" aria-hidden="true"></i>
+										{{ app.user.username }}</span>
+								{% endif %}
+								<a href="{{path('app_login')}}">Connexion</a>
+								<a href="{{path('app_logout')}}">Déconnexion</a>
+							</div>
+						</details>
+					{% endif %}
+				</div>
+				<div id="nav-toggle">
+					<span></span>
+				</div>
+			</nav>
+		</header>
 
 		{% block body %}{% endblock %}
+
+
+		<!-- footer -->
+		<footer
+			class="footer-section section">
+
+			<!--scroll top-->
+			<a href="#home" id="scroll-top">
+				<i class="fa fa-angle-up" aria-hidden="true"></i>
+			</a>
+			<!-- scroll top -->
+			<!-- footer section -->
+			<div class="footer-container container grid">
+				<div class="footer-content grid">
+					<div class="footer-info">
+						<h3 class="footer-title">Huiles Végétales AK</h3>
+						<p class="footer-description">Elixir de jouvence</p>
+					</div>
+					<div class="footer-info">
+						<h3 class="footer-title">A propos</h3>
+						<a class="footer-item" href="{{path('mentions')}}">Mentions légales</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
 	</body>
 </html>
