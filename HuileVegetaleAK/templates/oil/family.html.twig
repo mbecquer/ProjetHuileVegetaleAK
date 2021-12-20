@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+{% block title %}{% endblock %}
+{% block body %}
+
+<section class="section">
+		<h1 class="section-title">Famille des
+			{{family.name}}
+		</h1>
+	</section>
+	<section>
+		{% if family.story %}
+			<details>
+				<summary>Histoire botanique</summary>
+				{{family.story}}
+			</details>
+		{% endif %}
+	</section>
+
+{% endblock %}

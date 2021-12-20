@@ -23,6 +23,7 @@ class AdminArticlesController extends AbstractController
     {
         return $this->render('admin_articles/index.html.twig', [
             'articles' => $articleRepository->findAll(),
+            'title'=>'Admin articles'
         ]);
     }
 
@@ -45,6 +46,7 @@ class AdminArticlesController extends AbstractController
         return $this->renderForm('admin_articles/new.html.twig', [
             'article' => $article,
             'form' => $form,
+            'title'=>'Nouvel article'
         ]);
     }
     /**
@@ -64,6 +66,7 @@ class AdminArticlesController extends AbstractController
         return $this->renderForm('admin_articles/edit.html.twig', [
             'article' => $article,
             'form' => $form,
+            'title'=>'Modifier article'
         ]);
     }
 

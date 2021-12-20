@@ -1,0 +1,49 @@
+.admin-tab{
+    background:rgba(8, 243, 8, 0.3);
+    padding:2rem 1rem;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.admin-details{
+    border:2px dotted black;
+    display:flex;
+}
+.admin-summary{
+    cursor:pointer;
+    background:rgba(0,0,0,0.2);
+    display:grid;
+    grid-template-columns: repeat(1,1fr);
+}
+.admin-summary:hover{
+    background:rgba(8, 243, 8, 0.3);
+}
+.admin-summary-list{
+    display:grid;
+    grid-template-columns: repeat(1,1fr);
+}
+.admin-info, .admin-buttons{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap:0.5rem;
+    padding:0.5rem 0;
+}
+
+.admin-buttons .edit-button{
+    color:cyan;
+}
+.admin-buttons .delete-button{
+    color:crimson;
+}
+@media screen and (min-width: 768px){
+    .admin-summary{
+        display:grid;
+        grid-template-columns: repeat(2,1fr); 
+        padding:0 1rem;
+    }
+    .admin-summary-list{
+        display:grid;
+        grid-template-columns: repeat(2,1fr);
+ 
+    }
+}

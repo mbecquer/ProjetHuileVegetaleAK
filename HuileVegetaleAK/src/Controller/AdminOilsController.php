@@ -23,7 +23,7 @@ class AdminOilsController extends AbstractController
     {
         return $this->render('admin_oils/index.html.twig', [
             'oil' => $oilRepository->findAll(),
-            'title'=>'Administration Huiles'
+            'title'=>'Admin huiles'
         ]);
     }
 
@@ -46,6 +46,7 @@ class AdminOilsController extends AbstractController
         return $this->renderForm('admin_oils/new.html.twig', [
             'oil' => $oil,
             'form' => $form,
+            'title'=>'Nouvelle huile'
         ]);
     }
 
@@ -68,6 +69,7 @@ class AdminOilsController extends AbstractController
         return $this->renderForm('admin_oils/edit.html.twig', [
             'oil' => $oil,
             'form' => $form,
+            'title'=>'Modifier huile'
         ]);
     }
 

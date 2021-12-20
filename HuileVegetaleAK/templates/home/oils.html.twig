@@ -1,10 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{title}}{% endblock %}
+{% block title %}
+	{{title}}
+{% endblock %}
 
 {% block body %}
 
-    <h1>huiles</h1>
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Huiles vegetales de graines germees et des oléagineux activés</h1>
+
+			<!--familles botaniques-->
+			<div class="oil-container">
+
+				<div class="oil-family">
+					<h3 class="section-title">Familles botaniques</h3>
+					{% for family in families %}
+						{% if family.active %}
+							<li>
+								<a href="{{path('family_oil',{id:family.id})}}">{{family.name}}
+								</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</div>
+				<!--nouveautés-->
+				<div>
+					<h3 class="section-title">Nos nouveautés</h3>
+					<div class="oil-new">
+						{% for oil in oils %}
+							{% if oil.active %}
+								{% if oil.createdAt < date("2months") %}
+									<div class="oil-item">
+										<p>{{oil.name}}</p>
+										<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
+										<hr>
+									</div>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
+
+			<!--méthodes de production-->
+			<div class="oil-production">
+				<h3 class="section-title">Méthodes de production</h3>
+
+				<h3>Parties utilisées: Graines et oléagineux
+				</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+				<h3>Pré-traitement: Germination des graines et activation des oléagineux</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+
+				<h3>Méthode d’extraction mécanique: Presse hydraulique</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+
+			</div>
+		</div>
+	</div>
 
 
 {% endblock %}

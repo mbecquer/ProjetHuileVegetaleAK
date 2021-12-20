@@ -23,6 +23,7 @@ class AdminFamiliesController extends AbstractController
     {
         return $this->render('admin_families/index.html.twig', [
             'families' => $familyRepository->findAll(),
+            'title'=>'Admin familles'
         ]);
     }
 
@@ -45,6 +46,7 @@ class AdminFamiliesController extends AbstractController
         return $this->renderForm('admin_families/new.html.twig', [
             'family' => $family,
             'form' => $form,
+            'title'=>'Nouvelle famille'
         ]);
     }
 
@@ -65,6 +67,7 @@ class AdminFamiliesController extends AbstractController
         return $this->renderForm('admin_families/edit.html.twig', [
             'family' => $family,
             'form' => $form,
+            'title'=>'Modifier famille'
         ]);
     }
 
