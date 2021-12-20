@@ -47,17 +47,6 @@ class AdminArticlesController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    /**
-     * @Route("/{id}", name="admin_articles_show", methods={"GET"})
-     */
-    public function show(Article $article): Response
-    {
-        return $this->render('admin_articles/show.html.twig', [
-            'article' => $article,
-        ]);
-    }
-
     /**
      * @Route("/{id}/edit", name="admin_articles_edit", methods={"GET", "POST"})
      */

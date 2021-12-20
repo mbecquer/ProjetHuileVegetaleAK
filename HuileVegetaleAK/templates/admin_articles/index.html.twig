@@ -1,39 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Article index
+{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Created_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_articles_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('admin_articles_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="section">
+		<div class="container grid">
+			<h1 class="section-title">Administration Articles</h1>
+			<div>
+				<a href="{{ path('admin_articles_new') }}">
+					<button class="button">Ajouter nouvel article</button>
+				</a>
+			</div>
 
-    <a href="{{ path('admin_articles_new') }}">Create new</a>
+			{% for article in articles %}
+				<div class="admin-summary-list">
+					<div class="admin-info">
+						{{article.title}}
+						{{ article.content}}
+						{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}
+					</div>
+					<div class="admin-buttons">
+						<a href="{{ path('admin_articles_edit', {'id': article.id}) }}">
+							<button class="button edit-button">Modifier</button>
+						</a>
+						<form method="post" action="{{ path('admin_articles_delete', {'id': article.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+							<button class="button delete-button">Supprimer</button>
+						</form>
+
+					</div>
+				</div>
+			{% else %}
+				no article found
+			{% endfor %}
+
+		</div>
+	</div>
 {% endblock %}
