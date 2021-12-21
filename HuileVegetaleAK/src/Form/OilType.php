@@ -3,13 +3,19 @@
 namespace App\Form;
 
 use App\Entity\Oil;
+use App\Entity\Family;
+use App\Repository\FamilyRepository;
+use DateTime;
+use DateTimeImmutable;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class OilType extends AbstractType
@@ -52,8 +58,22 @@ class OilType extends AbstractType
             ->add('active', CheckboxType::class, [
                 'required' => false,
             ])
-            ->add('created_at', DateType::class,[
-                "label" => 'Date',
+         
+            ->add('family', EntityType::class, [
+                'class' => Family::class,
+                'choice_label' => function ($family) {
+                    return $family->getName();
+                },
+                'expanded' => false,
+                'label' => 'Famille',
+                'query_builder' => function (FamilyRepository $er) {
+                    return $er->createQueryBuilder('f')
+                        ->orderBy('f.name', 'ASC');
+                },
+                'attr' => [
+                    'class' => 'text-uppercase'
+                ]
+
             ])
         ;
     }

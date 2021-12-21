@@ -43,9 +43,14 @@ class Oil
     private $active;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Family::class, inversedBy="oil",cascade={"persist"})
+     */
+    private $family;
 
     public function getId(): ?int
     {
@@ -120,6 +125,18 @@ class Oil
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?Family $family): self
+    {
+        $this->family = $family;
 
         return $this;
     }

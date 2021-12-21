@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FamilyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Family
      * @ORM\Column(type="text")
      */
     private $story;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Oil::class, mappedBy="family",orphanRemoval=true)
+     */
+    private $oil;
+
+    public function __construct()
+    {
+        $this->oil = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,36 @@ class Family
     public function setStory(string $story): self
     {
         $this->story = $story;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Oil[]
+     */
+    public function getOil(): Collection
+    {
+        return $this->oil;
+    }
+
+    public function addOil(Oil $oil): self
+    {
+        if (!$this->oil->contains($oil)) {
+            $this->oil[] = $oil;
+            $oil->setFamily($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOil(Oil $oil): self
+    {
+        if ($this->oil->removeElement($oil)) {
+            // set the owning side to null (unless already changed)
+            if ($oil->getFamily() === $this) {
+                $oil->setFamily(null);
+            }
+        }
 
         return $this;
     }

@@ -30,13 +30,11 @@
 					<div class="oil-new">
 						{% for oil in oils %}
 							{% if oil.active %}
-								{% if oil.createdAt < date("2months") %}
 									<div class="oil-item">
 										<p>{{oil.name}}</p>
 										<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
 										<hr>
 									</div>
-								{% endif %}
 							{% endif %}
 						{% endfor %}
 					</div>

@@ -51,8 +51,8 @@ class OilsController extends AbstractController
     public function family( int $id, FamilyRepository $familyRepository, OilRepository $oilRepository)
     {
         $family =$familyRepository->find($id);
-        $oil = $oilRepository->findAll();
-        // $oil = $oilRepository->findBy(['family' => $family]);
+       
+         $oil = $oilRepository->findBy(['family' => $family]);
 
         if ($family->getActive() == false) {
             return $this->render('home/index.html.twig', [
@@ -69,10 +69,8 @@ class OilsController extends AbstractController
         }
 
         return $this->render('oil/family.html.twig', [
-            // 'huiles' => $huile,
             'family' => $family,
             'oils'=>$oil
-
         ]);
     }
 }

@@ -34,6 +34,7 @@ class AdminOilsController extends AbstractController
     {
         $oil = new Oil();
         $form = $this->createForm(OilType::class, $oil);
+        $oil->setCreatedAt(new \DateTimeImmutable());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
