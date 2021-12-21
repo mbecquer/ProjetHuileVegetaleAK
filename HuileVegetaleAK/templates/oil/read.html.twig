@@ -4,10 +4,24 @@
 
 	<div class="section">
 		<div class="container grid">
-			name : {{oil.name}}<br>
-			text : {{oil.description}}<br>
-			capacity : {{oil.capacity}}<br>
-			price : {{oil.price}}
+			<div>
+				<h3>{{oil.name}}</h3>
+				<p>
+					<span>Description:</span>
+					{{oil.description}}
+				</p>
+				<ul>
+					<li>
+						<span>Prix:</span>
+						{{oil.price}}
+						€</li>
+					<li>
+						<span>Capacité:</span>
+						{{oil.capacity}}
+						ml</li>
+
+				</ul>
+			</div>
 		</div>
 	</div>
 
