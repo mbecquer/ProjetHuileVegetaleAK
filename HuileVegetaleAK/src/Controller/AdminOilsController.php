@@ -5,24 +5,36 @@ namespace App\Controller;
 use App\Entity\Oil;
 use App\Form\OilType;
 use App\Repository\OilRepository;
+use App\Repository\FamilyRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/admin/oils")
  */
 class AdminOilsController extends AbstractController
 {
+    private $oilRepository;
+    private $em;
+    public function __construct(OilRepository $oilRepository, EntityManagerInterface $em, FamilyRepository $familyRepository)
+    {
+        $this->oilRepository = $oilRepository;
+        $this->familyRepository = $familyRepository;
+        $this->em = $em;
+    }
     /**
      * @Route("/", name="admin_oils_index", methods={"GET"})
      */
-    public function index(OilRepository $oilRepository): Response
+    public function index(): Response
     {
+        $family = $this->familyRepository->findAll();
+        $oil = $this->oilRepository->findBy(['family'=>$family]);
         return $this->render('admin_oils/index.html.twig', [
-            'oil' => $oilRepository->findAll(),
+            'oil' => $oil,
+            'families'=>$family,
             'title'=>'Admin huiles'
         ]);
     }

@@ -16,16 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminFamiliesController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin_families_index", methods={"GET"})
-     */
-    public function index(FamilyRepository $familyRepository): Response
-    {
-        return $this->render('admin_families/index.html.twig', [
-            'families' => $familyRepository->findAll(),
-            'title'=>'Admin familles'
-        ]);
-    }
+    
 
     /**
      * @Route("/new", name="admin_families_new", methods={"GET", "POST"})
@@ -40,7 +31,7 @@ class AdminFamiliesController extends AbstractController
             $entityManager->persist($family);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_families_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin_families/new.html.twig', [
@@ -61,7 +52,7 @@ class AdminFamiliesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_families_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin_families/edit.html.twig', [
@@ -81,6 +72,6 @@ class AdminFamiliesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('admin_families_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
     }
 }

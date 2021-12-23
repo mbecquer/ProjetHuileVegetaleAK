@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{title}}
+{% block title %}
+	{{title}}
 {% endblock %}
 
 {% block body %}
@@ -8,31 +9,59 @@
 		<div class="container grid">
 			<h1 class="section-title">Administration Huiles</h1>
 			<div>
-				<a href="{{ path('admin_oils_new') }}">
-					<button class="button">Ajouter nouvelle huile</button>
+				{% if families %}
+					<a href="{{ path('admin_oils_new') }}">
+						<button class="button">Ajouter nouvelle huile</button>
+					</a>
+				{% endif %}
+
+
+				<a href="{{ path('admin_families_new') }}">
+					<button class="button">Ajouter nouvelle famille</button>
 				</a>
 			</div>
+			{% for family in families %}
+				<details class="admin-detail">
+					<summary class="admin-summary">
+						<div class="admin-info">
+							{{family.name}}
+							{{ family.active ? 'Yes' : 'No' }}
+						</div>
+						<div class="admin-buttons">
+							<a href="{{path('admin_families_edit',{id:family.id})}}">
+								<button class="button edit-button">Modifier</button>
+							</a>
+							<form method="post" action="{{ path('admin_families_delete', {'id': family.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ family.id) }}">
+								<button class="button delete-button">Supprimer</button>
+							</form>
+						</div>
+					</summary>
+					{% for oil in oil|sort((a, b) => a.name <=> b.name) %}
+						<div class="admin-summary-list">
+							<div class="admin-info">
+								{{oil.name}}
+								{{ oil.active ? 'Yes' : 'No' }}
+							</div>
+							<div class="admin-buttons">
+								<a href="{{ path('admin_oils_edit', {'id': oil.id}) }}">
+									<button class="button edit-button">Modifier</button>
+								</a>
+								<form method="post" action="{{ path('admin_oils_delete', {'id': oil.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ oil.id) }}">
+									<button class="button delete-button">Supprimer</button>
+								</form>
 
-			{% for oil in oil|sort((a, b) => a.name <=> b.name) %}
-				<div class="admin-summary-list">
-					<div class="admin-info">
-						{{oil.name}}
-						{{ oil.active ? 'Yes' : 'No' }}
-					</div>
-					<div class="admin-buttons">
-						<a href="{{ path('admin_oils_edit', {'id': oil.id}) }}">
-							<button class="button edit-button">Modifier</button>
-						</a>
-						<form method="post" action="{{ path('admin_oils_delete', {'id': oil.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ oil.id) }}">
-							<button class="button delete-button">Supprimer</button>
-						</form>
-
-					</div>
-				</div>
-			{% else %}
-				no oil found
+							</div>
+						</div>
+					{% else %}
+						<p>Aucune huile trouvée !</p>
+					{% endfor %}
+				</details>
+				{% else %}
+			<p>Aucune famille trouvée !</p>
 			{% endfor %}
+
 
 		</div>
 	</div>
