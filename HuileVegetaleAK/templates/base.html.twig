@@ -37,14 +37,22 @@
 						<li>
 							<a href="{{path('app_login')}}" class="nav-link">Login</a>
 						</li>
-					
-					
-					
+						<li>
+							<a href="{{path('app_register')}}" class="nav-link">Register</a>
+						</li>
+						<li>
+							<a href="{{path('app_logout')}}" class="nav-link">Logout</a>
+						</li>
+						{% if app.user %}
+							{{app.user.username}}
+						{% endif %}
+
+
 						{% if is_granted("ROLE_ADMIN") %}
 							<li>
 								<a href="{{path('admin_oils_index')}}" class="nav-link">Admin Huiles</a>
 							</li>
-						
+
 							<li>
 								<a href="{{path('admin_articles_index')}}" class="nav-link">Admin Articles</a>
 							</li>
@@ -96,7 +104,7 @@
 					<span></span>
 				</div>
 			</nav>
-		
+
 		</header>
 
 		{% block body %}{% endblock %}
