@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Oil;
+use App\Entity\Image;
 use App\Form\OilType;
 use App\Repository\OilRepository;
 use App\Repository\FamilyRepository;
@@ -10,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -50,6 +52,22 @@ class AdminOilsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $images = $form->get('images')->getData();
+            foreach ($images as $image) {
+                # code...
+                //on génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //on copie le fichier dans le dossier upload
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //on stocke l'image dans la base de données (son nom)
+                $img = new Image();
+                $img->setName($fichier);
+                $oil->addImage($img);
+            }
             $entityManager->persist($oil);
             $entityManager->flush();
 
@@ -62,9 +80,6 @@ class AdminOilsController extends AbstractController
             'title'=>'Nouvelle huile'
         ]);
     }
-
-   
-
     /**
      * @Route("/{id}/edit", name="admin_oils_edit", methods={"GET", "POST"})
      */
@@ -74,6 +89,21 @@ class AdminOilsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('images')->getData();
+            foreach ($images as $image) {
+                # code...
+                //on génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //on copie le fichier dans le dossier upload
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //on stocke l'image dans la base de données (son nom)
+                $img = new Image();
+                $img->setName($fichier);
+                $oil->addImage($img);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
@@ -97,5 +127,27 @@ class AdminOilsController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     *  @Route("/{id}", name="oils_delete_image", methods={"DELETE"})
+     */
+    public function deleteImage(Image $image, Request $request){
+        $data = json_decode($request->getContent(), true);
+        //on vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])) {
+            //on récupère le nom de l'image
+            $nom = $image->getName();
+            //on supprime le fichier
+            unlink($this->getParameter('images_directory') . '/' . $nom);
+            //on supprime l'image de la base de données
+           $this-> em->remove($image);
+           $this-> em->flush();
+            // $this->addFlash("success", "Image supprimée avec succès");
+            //on répond en json
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token  invalide'], 400);
+        };
     }
 }
