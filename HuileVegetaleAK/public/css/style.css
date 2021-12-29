@@ -139,9 +139,10 @@ p{
 /*                            reusable css classes                            */
 /* -------------------------------------------------------------------------- */
 .section {
-  padding: 4.5rem 0 2.5rem;
+  padding: 6rem 0 2.5rem;
  display:flex;
  justify-content: center;
+
 }
 .section-product{
   display:flex;
@@ -157,6 +158,7 @@ p{
 }
 .container {
   max-width: 968px;
+
   margin-left: 1em;
   margin-right: 1em;
 }

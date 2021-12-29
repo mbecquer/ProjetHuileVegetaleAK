@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}{% endblock %}
+{% block title %}{{title}}{% endblock %}
 {% block body %}
 
 	<div class="section">
@@ -42,13 +42,7 @@
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae</p>
 					</li>
 				</ul>
-				<div>
-					<!--{% if is_granted("ROLE_USER")%}-->
-					<!--<a href="{{path('cart_add',{'id':oil.id})}}" ><button class="button">Ajouter au panier</button></a>-->
-					<!--{% else %}-->
-					<!--<a href="{{path('app_login')}}" ><button class="button">Ajouter au panier</button></a>-->
-					<!--{% endif %}-->		
-				</div>
+		
 
 			</div>
 		</div>

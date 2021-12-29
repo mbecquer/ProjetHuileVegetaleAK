@@ -42,6 +42,7 @@ class OilsController extends AbstractController
         }
         return $this->render('oil/read.html.twig', [
             'oil' => $oil,
+            'title'=>'L\'huile ' .$oil->getName()
 
         ]);
     }
@@ -57,7 +58,7 @@ class OilsController extends AbstractController
         if ($family->getActive() == false) {
             return $this->render('home/index.html.twig', [
                 $this->addFlash("success", "Famille non disponible"),
-                'title' => 'Huile végétale KA'
+                'title'=>'Huiles Végétales AK'
             ]);
         }
 
@@ -70,6 +71,7 @@ class OilsController extends AbstractController
 
         return $this->render('oil/family.html.twig', [
             'family' => $family,
+            'title'=>'Famille des ' . $family->getName(),
             'oils'=>$oil
         ]);
     }

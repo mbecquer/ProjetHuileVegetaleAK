@@ -25,13 +25,18 @@
 					<button class="button">Ajouter nouvelle famille</button>
 				</a>
 			</div>
+
+
 			{% for family in families %}
-				<details class="admin-detail">
+				<details class="admin-details">
 					<summary class="admin-summary">
+
 						<div class="admin-info">
+
 							{{family.name}}
 							{{ family.active ? 'Yes' : 'No' }}
 						</div>
+
 						<div class="admin-buttons">
 							<a href="{{path('admin_families_edit',{id:family.id})}}">
 								<button class="button edit-button">Modifier</button>
@@ -41,13 +46,16 @@
 								<button class="button delete-button">Supprimer</button>
 							</form>
 						</div>
+
 					</summary>
-					{% for oil in oil|sort((a, b) => a.name <=> b.name) %}
+
+					{% for oil in family.oil|sort((a, b) => a.name <=> b.name) %}
 						<div class="admin-summary-list">
 							<div class="admin-info">
 								{{oil.name}}
 								{{ oil.active ? 'Yes' : 'No' }}
 							</div>
+
 							<div class="admin-buttons">
 								<a href="{{ path('admin_oils_edit', {'id': oil.id}) }}">
 									<button class="button edit-button">Modifier</button>
@@ -59,6 +67,7 @@
 
 							</div>
 						</div>
+
 					{% else %}
 						<p>Aucune huile trouvée !</p>
 					{% endfor %}
