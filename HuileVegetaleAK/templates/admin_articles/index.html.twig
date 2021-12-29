@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{title}}
+{% block title %}
+	{{title}}
 {% endblock %}
 
 {% block body %}
@@ -8,6 +9,11 @@
 	<div class="section">
 		<div class="container grid">
 			<h1 class="section-title">Administration Articles</h1>
+			{% for message in app.flashes('success')  %}
+				<div class="success-message">
+					{{message}}
+				</div>
+			{% endfor %}
 			<div>
 				<a href="{{ path('admin_articles_new') }}">
 					<button class="button">Ajouter nouvel article</button>

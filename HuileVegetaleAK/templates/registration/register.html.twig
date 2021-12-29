@@ -6,6 +6,11 @@
 {% block body %}
 
 	<div class="section">
+		{% for message in app.flashes('success')  %}
+			<div class="success-message">
+				{{message}}
+			</div>
+		{% endfor %}
 		<div class="form-login">
 			<h1 class="section-title">
 				Inscription
@@ -28,6 +33,10 @@
 				</div>
 				<button type="submit" class="button">S'inscrire</button>
 				{{ form_end(registrationForm) }}
+			</div>
+			<div class="form-question">
+				<p>Vous avez déjà un compte ?</p>
+				<a href="{{path('app_login')}}">C'est par ici !</a>
 			</div>
 		</div>
 	</div>

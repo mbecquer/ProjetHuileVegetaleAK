@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta
-		charset="UTF-8">
+		name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
 		<!--css-->
 		<link rel="stylesheet" href="/css/huiles.css">
 		<link rel="stylesheet" href="/css/style.css">
@@ -11,18 +14,25 @@
 		<link rel="stylesheet" href="/css/carousel.css">
 		<link rel="stylesheet" href="/css/admin.css">
 		<link rel="stylesheet" href="/css/blog.css">
+		<link
+		rel="icon" type="image/png" href="/assets/logo-removebg-preview.png"/>
+		<!--font-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@500&family=Nunito+Sans&family=Sacramento&display=swap" rel="stylesheet">
+		<!--icon-->
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+		<!-- jquery -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
 
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
 	</head>
 	<body id="home">
 
@@ -34,21 +44,6 @@
 						<li>
 							<a href="{{path('oils')}}" class="nav-link">Huiles végétales</a>
 						</li>
-						<li>
-							<a href="{{path('app_login')}}" class="nav-link">Login</a>
-						</li>
-						<li>
-							<a href="{{path('app_register')}}" class="nav-link">Register</a>
-						</li>
-						<li>
-							<a href="{{path('app_logout')}}" class="nav-link">Logout</a>
-						</li>
-							<li>
-								<a href="{{path('admin_oils_index')}}" class="nav-link">Admin Huiles</a>
-							</li>
-						{% if app.user %}
-							{{app.user.username}}
-						{% endif %}
 
 
 						{% if is_granted("ROLE_ADMIN") %}
@@ -66,6 +61,10 @@
 								<a href="{{path('cart')}}" class="nav-link">Mon panier</a>
 							</li>
 
+						{% endif %}
+
+						{% if app.user %}
+							{{app.user.username}}
 						{% endif %}
 					</ul>
 					<div class="nav-account-mobile">
@@ -140,3 +139,9 @@
 
 	</body>
 </html>
+{% block javascripts %}
+
+	<script src="{{asset('js/main.js')}}"></script>
+	<script src="{{asset('js/carousel.js')}}"></script>
+
+{% endblock %}

@@ -8,6 +8,11 @@
 	<div class="section">
 		<div class="container grid">
 			<h1 class="section-title">Administration Huiles</h1>
+			{% for message in app.flashes('success')  %}
+				<div class="success-message">
+					{{message}}
+				</div>
+			{% endfor %}
 			<div>
 				{% if families %}
 					<a href="{{ path('admin_oils_new') }}">
@@ -58,8 +63,8 @@
 						<p>Aucune huile trouvée !</p>
 					{% endfor %}
 				</details>
-				{% else %}
-			<p>Aucune famille trouvée !</p>
+			{% else %}
+				<p>Aucune famille trouvée !</p>
 			{% endfor %}
 
 

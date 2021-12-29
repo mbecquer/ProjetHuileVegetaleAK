@@ -15,22 +15,28 @@
 			</details>
 		{% endif %}
 	</section>
-	<div class="section">
+	<div class="product-section">
 		<div class="product-container  grid">
 
 			{% for oil in oils %}
 
-				<a href="{{path('oil_read', {id: oil.id})}}">
-					<div class="product">
-						<div class="product-img">
-							
+					<a href="{{path('oil_read', {id: oil.id,})}}">
+						<div class="product">
+							<div class="product-img">
+								<div class="slideshow">
+									<ul>
+										{% for image in oil.images  %}
+											<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+							<div class="product-info">
+								<h2>{{oil.name}}</h2>
+							<p>{{oil.description}}</p>
+							</div>
 						</div>
-						<div class="product-info">
-							{{oil.name}}
-						</div>
-					</div>
-
-				</a>
+					</a>
 
 			{% endfor %}
 

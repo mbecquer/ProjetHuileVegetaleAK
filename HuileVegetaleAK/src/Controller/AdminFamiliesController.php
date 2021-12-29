@@ -30,7 +30,7 @@ class AdminFamiliesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($family);
             $entityManager->flush();
-
+            $this->addFlash("success", "Famille ajoutée avec succès");
             return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -51,7 +51,7 @@ class AdminFamiliesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash("success", "Famille modifiée avec succès");
             return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -70,6 +70,7 @@ class AdminFamiliesController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$family->getId(), $request->request->get('_token'))) {
             $entityManager->remove($family);
             $entityManager->flush();
+            $this->addFlash("success", "Famille supprimée avec succès");
         }
 
         return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);

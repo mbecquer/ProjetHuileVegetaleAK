@@ -38,6 +38,7 @@ class AdminArticlesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($article);
+            $this->addFlash("success", "Article ajouté avec succès");
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_articles_index', [], Response::HTTP_SEE_OTHER);
@@ -59,7 +60,7 @@ class AdminArticlesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash("success", "Article modifié avec succès");
             return $this->redirectToRoute('admin_articles_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -78,6 +79,7 @@ class AdminArticlesController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager->remove($article);
             $entityManager->flush();
+            $this->addFlash("success", "Article supprimé avec succès");
         }
 
         return $this->redirectToRoute('admin_articles_index', [], Response::HTTP_SEE_OTHER);

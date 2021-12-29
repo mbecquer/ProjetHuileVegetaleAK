@@ -1,0 +1,24 @@
+.slideshow{
+    display:none;
+}
+.carousel-mobile{
+    padding:1rem;
+}
+ @media screen and (min-width: 768px){
+.carousel-mobile{
+    display: none;
+}
+    .slideshow {
+        display:block;
+        width:400px;
+        overflow: hidden;
+     }
+     
+     .slideshow ul {
+        width: 400%;
+        height: 200px;
+        padding:0; margin:0;
+        list-style: none;
+        display:flex;
+     }
+ }

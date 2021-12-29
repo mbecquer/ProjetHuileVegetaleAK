@@ -70,7 +70,7 @@ class AdminOilsController extends AbstractController
             }
             $entityManager->persist($oil);
             $entityManager->flush();
-
+            $this->addFlash("success", "Huile ajoutée avec succès");
             return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -105,7 +105,7 @@ class AdminOilsController extends AbstractController
                 $oil->addImage($img);
             }
             $entityManager->flush();
-
+            $this->addFlash("success", "Huile modifiée avec succès");
             return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -124,6 +124,7 @@ class AdminOilsController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$oil->getId(), $request->request->get('_token'))) {
             $entityManager->remove($oil);
             $entityManager->flush();
+            $this->addFlash("success", "Huile supprimée avec succès");
         }
 
         return $this->redirectToRoute('admin_oils_index', [], Response::HTTP_SEE_OTHER);
@@ -143,7 +144,7 @@ class AdminOilsController extends AbstractController
             //on supprime l'image de la base de données
            $this-> em->remove($image);
            $this-> em->flush();
-            // $this->addFlash("success", "Image supprimée avec succès");
+            $this->addFlash("success", "Image supprimée avec succès");
             //on répond en json
             return new JsonResponse(['success' => 1]);
         } else {
