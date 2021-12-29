@@ -18,7 +18,7 @@ class FamilyType extends AbstractType
         ->add('name', TextType::class, [
             'label' => false,
             'required' => true,
-            'help' => '(Saisir en majuscules)',
+            // 'help' => '(Saisir en majuscules)',
             "attr" => [
                 'placeholder' => "Nom de la famille",
 

@@ -25,21 +25,7 @@
 						{% endif %}
 					{% endfor %}
 				</div>
-				<!--nouveautés-->
-				<div>
-					<h3 class="section-title">Nos nouveautés</h3>
-					<div class="oil-new">
-						{% for oil in oils %}
-							{% if oil.active %}
-								<div class="oil-item">
-									<p>{{oil.name}}</p>
-									<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
-									<hr>
-								</div>
-							{% endif %}
-						{% endfor %}
-					</div>
-				</div>
+
 			</div>
 
 
