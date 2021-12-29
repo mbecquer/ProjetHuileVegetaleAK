@@ -28,7 +28,33 @@
 
 			</div>
 
-
+			<!--nouveautés-->
+			<div>
+				<h3 class="section-title">Nos nouveautés</h3>
+				<div class="oil-new">
+					{% for oil in oils %}
+						{% if oil.active %}
+							<div class="oil-item">
+								<div class="slideshow">
+									<ul>
+										{% for image in oil.images  %}
+											<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+										{% endfor %}
+									</ul>
+								</div>
+								<div class="carousel-mobile">
+									{% for image in oil.images  %}
+										<img style="height:200px; width:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} ">
+									{% endfor %}
+								</div>
+								<p>{{oil.name}}</p>
+								<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
+								<hr>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
 			<!--méthodes de production-->
 			<div class="oil-production">
 				<h3 class="section-title">Méthodes de production</h3>
