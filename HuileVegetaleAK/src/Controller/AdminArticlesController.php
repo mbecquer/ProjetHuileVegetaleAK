@@ -40,14 +40,15 @@ class AdminArticlesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $images = $form->get('imagesArticle')->getData();
-            foreach ($images as $image) {
+
+            $imagesArticle = $form->get('imagesArticle')->getData();
+            foreach ($imagesArticle as $image) {
                 # code...
                 //on génère un nouveau nom de fichier
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
                 //on copie le fichier dans le dossier upload
                 $image->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('imagesArticle_directory'),
                     $fichier
                 );
                 //on stocke l'image dans la base de données (son nom)
@@ -56,9 +57,8 @@ class AdminArticlesController extends AbstractController
                 $article->addImageArticle($img);
             }
             $entityManager->persist($article);
-            $this->addFlash("success", "Article ajouté avec succès");
             $entityManager->flush();
-
+            $this->addFlash("success", "Article ajouté avec succès");
             return $this->redirectToRoute('admin_articles_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,14 +77,14 @@ class AdminArticlesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $images = $form->get('imagesArticle')->getData();
-            foreach ($images as $image) {
+            $imagesArticle = $form->get('imagesArticle')->getData();
+            foreach ($imagesArticle as $image) {
                 # code...
                 //on génère un nouveau nom de fichier
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
                 //on copie le fichier dans le dossier upload
                 $image->move(
-                    $this->getParameter('images_directory'),
+                    $this->getParameter('imagesArticle_directory'),
                     $fichier
                 );
                 //on stocke l'image dans la base de données (son nom)
@@ -117,6 +117,7 @@ class AdminArticlesController extends AbstractController
 
         return $this->redirectToRoute('admin_articles_index', [], Response::HTTP_SEE_OTHER);
     }
+
     /**
      *  @Route("/{id}", name="articles_delete_image", methods={"DELETE"})
      */
@@ -127,7 +128,7 @@ class AdminArticlesController extends AbstractController
             //on récupère le nom de l'image
             $nom = $imageArticle->getName();
             //on supprime le fichier
-            unlink($this->getParameter('images_directory') . '/' . $nom);
+            unlink($this->getParameter('imagesArticle_directory') . '/' . $nom);
             //on supprime l'image de la base de données
            $this-> em->remove($imageArticle);
            $this-> em->flush();
