@@ -35,7 +35,7 @@ class Article
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity=ImageArticle::class, mappedBy="article", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ImageArticle::class, mappedBy="article", orphanRemoval=true, cascade={"persist"})
      */
     private $imageArticles;
 

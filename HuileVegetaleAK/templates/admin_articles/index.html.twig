@@ -24,7 +24,7 @@
 			{% for article in articles %}
 
 				<details class="admin-details">
-					<div class="admin-summary-list">
+					<summary class="admin-summary">
 						<div class="admin-info">
 							{{article.title}}
 							{{ article.content}}
@@ -40,12 +40,18 @@
 							</form>
 
 						</div>
-					</div>
+					</summary>
+
+					{% for imagesArticle in article.imageArticles %}
+	
+							<img style="width:auto; height:200px; object-fit:cover;" src="{{ asset('/uploads/'~ imagesArticle.name)}}" alt="Image">
+			
+					{% endfor %}
 				</details>
 
 
 			{% else %}
-				no article found
+				<p>Aucun article trouvé</p>
 			{% endfor %}
 
 		</div>

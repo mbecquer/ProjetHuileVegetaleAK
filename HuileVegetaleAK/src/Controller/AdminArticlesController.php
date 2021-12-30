@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Entity\ImageArticle;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/admin/articles")
@@ -34,9 +36,25 @@ class AdminArticlesController extends AbstractController
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
+        $article->setCreatedAt(new \DateTimeImmutable());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('imagesArticle')->getData();
+            foreach ($images as $image) {
+                # code...
+                //on génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //on copie le fichier dans le dossier upload
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //on stocke l'image dans la base de données (son nom)
+                $img = new ImageArticle();
+                $img->setName($fichier);
+                $article->addImageArticle($img);
+            }
             $entityManager->persist($article);
             $this->addFlash("success", "Article ajouté avec succès");
             $entityManager->flush();
@@ -59,6 +77,21 @@ class AdminArticlesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('imagesArticle')->getData();
+            foreach ($images as $image) {
+                # code...
+                //on génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                //on copie le fichier dans le dossier upload
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                //on stocke l'image dans la base de données (son nom)
+                $img = new ImageArticle();
+                $img->setName($fichier);
+                $article->addImageArticle($img);
+            }
             $entityManager->flush();
             $this->addFlash("success", "Article modifié avec succès");
             return $this->redirectToRoute('admin_articles_index', [], Response::HTTP_SEE_OTHER);
@@ -83,5 +116,26 @@ class AdminArticlesController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_articles_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     *  @Route("/{id}", name="articles_delete_image", methods={"DELETE"})
+     */
+    public function deleteImageArticle(ImageArticle $imageArticle, Request $request){
+        $data = json_decode($request->getContent(), true);
+        //on vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $imageArticle->getId(), $data['_token'])) {
+            //on récupère le nom de l'image
+            $nom = $imageArticle->getName();
+            //on supprime le fichier
+            unlink($this->getParameter('images_directory') . '/' . $nom);
+            //on supprime l'image de la base de données
+           $this-> em->remove($imageArticle);
+           $this-> em->flush();
+            $this->addFlash("success", "Image supprimée avec succès");
+            //on répond en json
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token  invalide'], 400);
+        };
     }
 }

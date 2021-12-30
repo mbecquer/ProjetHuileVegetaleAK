@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{title}}{% endblock %}
+{% block title %}
+	{{title}}
+{% endblock %}
 
 {% block body %}
-  
+
 	<div class="section">
 		<div class="form-login">
-			<h1 class="section-title">Modifier l'article {{article.title}}</h1>
+			<h1 class="section-title">Modifier l'article
+				{{article.title}}</h1>
 			<div class="form-container">
 				{{ form_start(form) }}
 				<div class="form-input">
@@ -14,11 +17,22 @@
 				<div class="form-input">
 					{{form_row(form.content)}}</div>
 				<div class="form-input">
-					{{form_row(form.created_at)}}</div>
+					{{form_row(form.imagesArticle)}}</div>
 				<button class="button">{{ button_label|default('Enregistrer') }}</button>
 				{{ form_end(form) }}
 			</div>
-		</div>
+			<div class="form-content">
+				{% for imagesArticle in article.imageArticles %}
+					<div><img style="width:100%; height:100px; object-fit:cover;" src="{{ asset('/uploads/'~ imagesArticle.name)}}" alt="Image">
+						<a class="button submit" href="{{ path('articles_delete_image', {'id': imagesArticle.id}) }} " data-delete data-token="{{ csrf_token('delete' ~ imagesArticle.id) }}">Supprimer</a>
+					</div>
 
+				{% endfor %}
+			</div>
+		</div>
 	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{asset('js/main.js')}}"></script>
+	<script src="{{asset('js/imagesArticle.js')}}"></script>
 {% endblock %}
