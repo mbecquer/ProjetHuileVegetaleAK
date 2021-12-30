@@ -42,7 +42,11 @@
 						</div>
 					</summary>
 
-	
+			{% for image in article.imageArticles %}
+					<div><img style="width:auto; height:200px; object-fit:cover;" src="{{ asset('/uploadsArticle/'~ image.name)}}" alt="Image">
+					</div>
+
+				{% endfor %}
 				</details>
 
 
