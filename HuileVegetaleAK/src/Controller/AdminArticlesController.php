@@ -18,13 +18,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class AdminArticlesController extends AbstractController
 {
+    private $articleRepository;
+    private $em;
+    public function __construct(ArticleRepository $articleRepository, EntityManagerInterface $em )
+    {
+        $this->articleRepository = $articleRepository;
+        $this->em = $em;
+    }
     /**
      * @Route("/", name="admin_articles_index", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(): Response
     {
+        $article = $this->articleRepository->findAll();
         return $this->render('admin_articles/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $article,
             'title'=>'Admin articles'
         ]);
     }
