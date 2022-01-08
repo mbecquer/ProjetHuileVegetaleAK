@@ -28,7 +28,7 @@
 /* -------------------------------------------------------------------------- */
 /*                                    color                                   */
 /* -------------------------------------------------------------------------- */
---dark:#212121;
+--dark:#303030;
 --black:#000000;
 --grey:lightgrey;
 --white:#FFF;
@@ -136,14 +136,14 @@ textarea::placeholder{
 /*                                 paragraphe                                 */
 /* -------------------------------------------------------------------------- */
 p{
-  color:var(--lightblue);
+  color:var(--dark);
   font-size:var(--fontSizeTextMobile);
 }
 /* -------------------------------------------------------------------------- */
 /*                            reusable css classes                            */
 /* -------------------------------------------------------------------------- */
 .section {
-  padding: 6rem 0 2.5rem;
+  padding: 10rem 0 2.5rem;
  display:flex;
  justify-content: center;
 
@@ -501,7 +501,7 @@ footer{
 }
 .footer-description{
   margin-bottom: 2rem;
-  color:var(--greendark);
+  color:var(--white);
 }
 .footer-item{
   margin-bottom: 0.75rem;

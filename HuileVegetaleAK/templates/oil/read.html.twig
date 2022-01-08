@@ -1,9 +1,15 @@
 {% extends "base.html.twig" %}
-{% block title %}{{title}}{% endblock %}
+{% block title %}
+	{{title}}
+{% endblock %}
 {% block body %}
 
 	<div class="section">
+
+
 		<div class="container grid">
+
+
 			<div class="slideshow">
 				<ul>
 					{% for image in oil.images  %}
@@ -11,6 +17,8 @@
 					{% endfor %}
 				</ul>
 			</div>
+
+
 			<div class="carousel-mobile">
 				{% for image in oil.images  %}
 					<img style="height:200px; width:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} ">
@@ -22,6 +30,7 @@
 					<span>Image non disponible</span>
 				</div>
 			{% endif %}
+
 			<div>
 				<h3>{{oil.name}}</h3>
 				<p>
@@ -29,15 +38,12 @@
 					{{oil.description}}
 				</p>
 				<ul>
-				
+					<li>
 						<span>Utilisation:</span>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae</p>
 					</li>
 				</ul>
-		
-
 			</div>
 		</div>
 	</div>
-
 {% endblock %}

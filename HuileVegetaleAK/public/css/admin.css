@@ -30,10 +30,10 @@
 }
 
 .admin-buttons .edit-button{
-    color:cyan;
+    color:#fff;
 }
 .admin-buttons .delete-button{
-    color:crimson;
+    color:#fff;
 }
 @media screen and (min-width: 768px){
     .admin-summary{
