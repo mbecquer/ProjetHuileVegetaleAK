@@ -8,14 +8,15 @@
 
 	<div class="section">
 
-		<div class="container grid">
+		<div class="oil-container grid ">
 			<h1 class="section-title">Huiles vegetales de graines germees et des oléagineux activés</h1>
 
 			<!--familles botaniques-->
-			<div class="oil-container">
 
-				<div class="oil-family">
-					<h3 class="section-title">Familles botaniques</h3>
+
+			<div class="oil-family">
+				<h3 class="section-title">Familles botaniques</h3>
+				<ul>
 					{% for family in families %}
 						{% if family.active %}
 							<li>
@@ -24,9 +25,9 @@
 							</li>
 						{% endif %}
 					{% endfor %}
-				</div>
-
+				</ul>
 			</div>
+
 
 			<!--nouveautés-->
 			<div>
@@ -49,7 +50,7 @@
 								</div>
 								<p>{{oil.name}}</p>
 								<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
-								<hr>
+					
 							</div>
 						{% endif %}
 					{% endfor %}
