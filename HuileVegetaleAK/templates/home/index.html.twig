@@ -16,15 +16,19 @@
 		<!--présentation huile vegetale-->
 		<section>
 			<img src="{{asset('/assets/Marché.JPG')}}" class="home-img"/>
-			<div class="home-container container grid">
+			<div class="home-container ">
+
 				<div class="home-info">
-					<span class="subtitle">Découvrez nos huiles</span>
-					<h1 class="title">
-						Les huiles végétales
-						<br/>
-						un véritable élixir
-					</h1>
-					<a href="{{path('oils')}}" class="button">Découvrir</a>
+			
+						<h1 class=" title">Les huiles végétales
+							<br>
+							un véritable élixir</h1>
+				
+						<a href="{{path('oils')}}" class="button ">Découvrir nos Huiles</a>
+			
+				</div>
+				<div class="home-logo display-mobile">
+					<a href="{{path('home')}}" title="Accueil"><img class="nav-logo" src="{{ asset('/assets/logo-removebg-preview.png') }}"></a>
 				</div>
 			</div>
 		</section>

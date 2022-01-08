@@ -33,6 +33,9 @@
 --grey:lightgrey;
 --white:#FFF;
 --green: #4a894c;
+--greenlight:#DAF2DA;
+--greenlighttransparent:#daf2da3a;
+--greendark:#519373;
 --darkblue: #1a262e;
 --lightblue:#00646B;
 
@@ -73,6 +76,7 @@ html{
 body{
   margin:var(--header-height) 0 0 0;
   color:black;
+
   font-family:var(--font-family-normal);
 }
 h1, h2, h3{
@@ -87,7 +91,7 @@ h1, h2, h3{
 /*                                    lien                                    */
 /* -------------------------------------------------------------------------- */
 a{
-  color:var(--lightblue);
+  color:var(--dark);
   font-weight: 700;
   text-decoration: none !important;
   text-transform: uppercase;
@@ -158,7 +162,6 @@ p{
 }
 .container {
   max-width: 968px;
-
   margin-left: 1em;
   margin-right: 1em;
 }
@@ -179,8 +182,8 @@ p{
 
 }
 .button{
- 
-  background:var(--dark);
+  background:var(--greendark);
+  border-radius:10px;
   color:white;
   padding:1rem 2rem;
   display: inline-block;
@@ -190,7 +193,7 @@ p{
   text-decoration: none;
 }
 .button:hover{
-  color:var(--green);
+  background:var(--green);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -202,21 +205,18 @@ header{
   top: 0;
   left: 0;
   z-index: var(--z-index);
-  background-color: transparent;
   transition: 0.4s;
 }
 
 nav{
-  display: flex;
-  justify-content: space-evenly;
+  display:flex;
+margin:1rem 1rem;
   align-items: center;
+}
 
-}
-.nav-logo{
-  height:6em;
-}
+
 .nav-list a{
-  color:var(--green);
+  color:var(--dark);
   font-size:var(--h3-font-size);
 }
 .nav-list{
@@ -228,24 +228,17 @@ nav{
 .nav-list a:hover{
   color:var(--green);
 }
-.my-account{
-  display:flex;
-  flex-direction: column;
-}
+
 
 details{
-
-  color:var(--green);
+  color:var(--dark);
   padding:0.5rem 1rem;
 }
 summary{
   font-size: var(--h3-font-size);
 }
 
-.my-account a {
-  text-decoration: none;
-  color:var(--dark);
-}
+
 .success-message{
   background:var(--green);
   color:var(--white);
@@ -267,7 +260,7 @@ summary{
     width: 50%;
     height: 100%;
     box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.7);
-    padding:3rem 0;
+    padding:5rem 0;
     transition: .4s;
   }
   .nav-list{
@@ -277,6 +270,9 @@ summary{
   }
   .nav-account{
     display:none;
+  }
+  .nav-account-mobile{
+    padding:2rem 0.5rem;
   }
   #nav-toggle{
     color:darkgreen;
@@ -331,11 +327,6 @@ summary{
     background:var(--green);
     border-radius:20px;
   }
-
-
-
-
-
 }
 /* -------------------------------------------------------------------------- */
 /*                                  show-menu                                 */
@@ -343,15 +334,6 @@ summary{
 .show-menu{
   left:0;
 }
-/* Change background header */
-.scroll-header {
-  box-shadow: 0px 0 15px rgba(0, 0, 0, 0.7);;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-header{
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
 /* -------------------------------------------------------------------------- */
 /*                                    main                                    */
 /* -------------------------------------------------------------------------- */
@@ -363,9 +345,29 @@ main{
   position: relative;
   height: calc(100vh - var(--header-height));
   align-content: center;
-  row-gap: 3rem;
+  display:grid;
+  grid-template-columns:1fr;
 }
 
+.home-info{
+ padding:1rem 0.5rem;
+}
+
+.home-info a{
+margin:1rem 0 0 0 ;
+}
+
+.home-logo{
+  margin:auto;
+}
+
+.display-mobile{
+  display:none;
+}
+.nav-logo{
+  height:auto;
+  width:20em;
+}
 .home-img {
   position: absolute;
   top: 0;
@@ -444,11 +446,11 @@ main{
 /*                                   contact                                  */
 /* -------------------------------------------------------------------------- */
 .contact-bg{
-  background:var(--green);
+  background:var(--greendark);
   padding: 2.5rem 1rem;
 }
 .contact-title, .contact-description{
-  color:white;
+  color:var(--white);
 }
 .contact-description{
   text-align: center;
@@ -483,7 +485,7 @@ main{
 
 footer{
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
-  background:var(--darkblue);
+  background:var(--dark);
 }
  .footer-container{
   padding:4em 0;
@@ -499,7 +501,7 @@ footer{
 }
 .footer-description{
   margin-bottom: 2rem;
-  color:var(--white);
+  color:var(--greendark);
 }
 .footer-item{
   margin-bottom: 0.75rem;
@@ -514,7 +516,9 @@ footer{
 @media screen and (min-width: 768px){
 
   /* nav */
-
+.display-mobile{
+  display:block;
+}
   #nav-toggle{
       display:none;
   }
@@ -532,11 +536,17 @@ footer{
   }
   .nav-list li{
     padding:0 3rem;
+
   }
-  /* section home */
-  .home-info{
-      padding:0 0 0 5rem;
-  }
+
+/* home */
+.home-container{
+  display:flex;
+}
+.home-info{
+  margin:auto;
+}
+
   /* section elixir */
   .elixir-container{
       grid-template-columns: repeat(2, 1fr);
