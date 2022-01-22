@@ -6,15 +6,10 @@
 
 {% block body %}
 
-	<div class="section">
-
-		<div class="oil-container grid ">
-			<h1 class="section-title">Huiles vegetales de graines germees et des oléagineux activés</h1>
-
-			<!--familles botaniques-->
-
-
-			<div class="oil-family">
+	<div class="oil-section">
+		<h1 class="section-title">Huiles vegetales de graines germees et des oléagineux activés</h1>
+		<div class="oil-container">
+			<div class="oil-families">
 				<h3 class="section-title">Familles botaniques</h3>
 				<ul>
 					{% for family in families %}
@@ -27,51 +22,47 @@
 					{% endfor %}
 				</ul>
 			</div>
-
-
-			<!--nouveautés-->
-			<div>
-				<h3 class="section-title">Nos nouveautés</h3>
-				<div class="oil-new">
-					{% for oil in oils %}
-						{% if oil.active %}
-							<div class="oil-item">
-								<div class="slideshow">
-									<ul>
-										{% for image in oil.images  %}
-											<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
-										{% endfor %}
-									</ul>
-								</div>
-								<div class="carousel-mobile">
+			<div class="oil-products">
+				{% for oil in oils %}
+					{% if oil.active %}
+						<div class="oil-item">
+							<div class="slideshow">
+								<ul>
 									{% for image in oil.images  %}
-										<img style="height:200px; width:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} ">
+										<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
 									{% endfor %}
-								</div>
-								<p>{{oil.name}}</p>
-								<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
-					
+								</ul>
 							</div>
-						{% endif %}
-					{% endfor %}
-				</div>
-			</div>
-			<!--méthodes de production-->
-			<div class="oil-production">
-				<h3 class="section-title">Méthodes de production</h3>
+							<div class="carousel-mobile">
+								{% for image in oil.images  %}
+									<img style="height:200px; width:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} ">
+								{% endfor %}
+							</div>
+							<p>{{oil.name}}</p>
+							<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
 
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<h3 class="section-title">Méthodes de production</h3>
+		<div class="oil-methode">
+			<div>
 				<h3>Parties utilisées: Graines et oléagineux
 				</h3>
 				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
+
+			</div>
+			<div>
 				<h3>Pré-traitement: Germination des graines et activation des oléagineux</h3>
 				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
-
+			</div>
+			<div>
 				<h3>Méthode d’extraction mécanique: Presse hydraulique</h3>
 				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora cupiditate totam sequi reprehenderit blanditiis iusto praesentium eos laboriosam omnis sunt porro odit, assumenda perspiciatis placeat, ipsam accusantium fuga earum nisi.</p>
-
 			</div>
 		</div>
 	</div>
-
 
 {% endblock %}

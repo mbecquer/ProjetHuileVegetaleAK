@@ -177,7 +177,6 @@ p {
   display: inline-block;
   text-transform: uppercase;
   font-weight: var(--font-weight-semi-bold);
-  transition: 0.4s;
   text-decoration: none;
   background: var(--dark);
 }
@@ -394,6 +393,10 @@ main {
   column-gap: 1rem;
   align-items: center;
   justify-content: center;
+  position:relative;
+}
+.qui-img:hover .qui-button{
+  display:block;
 }
 .qui-section {
   padding: 3rem;
@@ -405,6 +408,15 @@ main {
   row-gap: 2.5rem;
 }
 
+.qui-button{
+  position:absolute;
+  display:none;
+  left:0;
+  right:0;
+  margin:0 auto;
+  text-align: center;
+  width:50%;
+}
 /* -------------------------------------------------------------------------- */
 /*                       nos valeurs et nos engagements                       */
 /* -------------------------------------------------------------------------- */
@@ -532,37 +544,34 @@ footer {
   /* section elixir */
   .elixir-container {
     grid-template-columns: repeat(2, 1fr);
-    border: 2px solid black;
+
   }
   .elixir-info,
   .elixir-title {
     text-align: initial;
-    border: 2px solid gold;
+
   }
   .elixir-img-two {
     width: 400px;
-    border: 2px solid red;
+
   }
   /* qui sommes nous */
-  .qui-container {
-    border: 2px solid blue;
-  }
+
   .qui-section {
     padding: 10rem 0;
   }
   .qui-img {
     flex-direction: row;
-    border: 2px solid gold;
+
   }
   .qui-img-overlay {
     position: relative;
   }
-  .qui-button {
-    position: absolute;
-    top: 35%;
-    right: 26%;
-    opacity: 95%;
-  }
+.qui-img-container{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:2rem;
+}
   /* nos valeurs et nos engagements */
   .valeur-container {
     grid-template-columns: repeat(2, 1fr);

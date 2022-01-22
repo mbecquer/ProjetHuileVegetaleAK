@@ -24,7 +24,7 @@
 						<br>
 						un véritable élixir</h1>
 
-					<a href="{{path('oils')}}" class="button">Découvrir nos Huiles</a>
+					<a href="#qui" class="button">Découvrir nos Huiles</a>
 
 				</div>
 				<div class="home-logo display-mobile">
@@ -43,37 +43,33 @@
 				</div>
 				<div class="elixir-info">
 					<h2 class="section-title elixir-title">Elixir de jouvence</h2>
-					<p>Pourquoi faire germer les graines ? La
-						germination est le processus naturel. Le
-						contact des graines avec l'eau inhibe leur
-						dormance. Il déclenche un enchainement de
-						mécanismes entrainant la décomposition de
-						grosses molécules nutritives complexes en
-						levant les inhibiteurs indigestes,
+					<p>Pourquoi faire germer les graines ? La germination est le processus naturel. Le contact des graines avec l'eau inhibe leur dormance. Il déclenche un enchainement de mécanismes entrainant la décomposition de grosses molécules nutritives complexes en levant les inhibiteurs indigestes,
 					</p>
 				</div>
 
 			</div>
 		</section>
 		<!-- qui sommes nous -->
-		<section class=" qui-section">
+		<section class=" qui-section" id="qui">
 			<div class="qui-container container">
 				<h2 class="section-title qui-title">Qui sommes nous</h2>
 				<div class="qui-info">
 					<p></p>
 				</div>
-				<div class="qui-img">
-					<div class="qui-img-overlay">
+				<div class="qui-img-container">
+					<div class="qui-img">
 						<img class="elixir-img-two" src="{{asset('/assets/Image JPEG 9.jpeg')}}"/>
-				<button class="button qui-button">Se laver</button>
+
+						<a href="{{path('oils')}}" class="button qui-button">Nos Huiles</a>
+
 					</div>
-					<div class="qui-img-overlay">
+					<div class="qui-img">
 						<img class="elixir-img-two" src="{{asset('/assets/Image JPEG 10.jpeg')}}"/>
-					<button class="button qui-button">Se laver</button>
+						<button class="button qui-button">Nos Familles</button>
 					</div>
-					<div class="qui-img-overlay">
+					<div class="qui-img">
 						<img class="elixir-img-two" src="{{asset('/assets/oilbg.jpeg')}}"/>
-						<button class="button qui-button">Se laver</button>
+						<button class="button qui-button">Méthode de production</button>
 					</div>
 				</div>
 			</div>
@@ -107,6 +103,5 @@
 			</div>
 		</section>
 	</main>
-
 
 {% endblock %}

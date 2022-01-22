@@ -1,4 +1,4 @@
-.oil-item {
+/* .oil-item {
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
@@ -9,14 +9,38 @@
 }
 .oil-family ul {
   text-align: center;
-}
+} */
 @media screen and (min-width: 768px) {
-  .oil-new {
+  /* .oil-new {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  } */
+  /* refonte */
+  .oil-section{
+    padding:6rem 4rem;
   }
   .oil-container {
-    padding: 0 10rem;
+  display:grid;
+  grid-template-columns: 0.2fr 1fr;
+  height:100vh;
+  gap:2rem;
+  }
+  .oil-families{
+    margin:1rem;
+padding:1rem;
+    box-shadow:2px 2px 5px rgba(0,0,0,0.5)
+
+  }
+  .oil-products{
+    box-shadow:2px 2px 5px rgba(0,0,0,0.5);
+    padding:1rem;
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+margin:1rem;
+  }
+  .oil-methode{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
   }
 }
