@@ -22,29 +22,41 @@
 					{% endfor %}
 				</ul>
 			</div>
+
 			<div class="oil-products">
 				{% for oil in oils %}
-					{% if oil.active %}
-						<div class="oil-item">
+					<!-- card -->
+					<div class="card">
+						<div class="img">
 							<div class="slideshow">
 								<ul>
 									{% for image in oil.images  %}
-										<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+										<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
 									{% endfor %}
 								</ul>
 							</div>
-							<div class="carousel-mobile">
-								{% for image in oil.images  %}
-									<img style="height:200px; width:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} ">
-								{% endfor %}
+							<a href="{{path('oil_read', {id: oil.id,})}}">Voir ce produit</a>
+						</div>
+						<div class="info">
+							<div class="name">
+								<h2>{{oil.name}}</h2>
+								<span class="price">{{oil.price}}
+									€</span>
 							</div>
-							<p>{{oil.name}}</p>
-							<a href="{{path('oil_read', {id: oil.id})}}">voir ce produit</a>
+							<span class="name-alt">{{oil.description}}</span>
+							<div class="description">
+								<h3>Capacité</h3>
+								<span>25</span>
+								<span>50</span>
+								<span>100</span>
+							</div>
 
 						</div>
-					{% endif %}
+					</div>
+					<!-- fin card -->
 				{% endfor %}
 			</div>
+
 		</div>
 		<h3 class="section-title">Méthodes de production</h3>
 		<div class="oil-methode">

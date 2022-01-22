@@ -4,45 +4,53 @@
 {% endblock %}
 {% block body %}
 
-	<div class="section">
+	<div
+		class="section">
 
-
-		<div class="container grid">
-
-
-			<div class="slideshow">
-				<ul>
-					{% for image in oil.images  %}
-						<li><img style="width:400px; height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+		<!-- fiche produit -->
+		<div class="container-produit">
+			<div class="container-photo-alt">
+				<div class="photo-alt">
+					{% for image in oil.images %}
+						<img style="" src=" {{ asset('uploads/'~ image.name)}} ">
 					{% endfor %}
-				</ul>
-			</div>
-
-
-			<div class="carousel-mobile">
-				{% for image in oil.images  %}
-					<img style="height:200px; width:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} ">
-				{% endfor %}
-			</div>
-
-			{% if oil.images.isempty %}
-				<div>
-					<span>Image non disponible</span>
 				</div>
-			{% endif %}
+			</div>
+			<div class="container-photo-desc">
+				<div class="photo">
+					<div class="slideshow product-slideshow">
+						<ul>
+							{% for image in oil.images %}
+								<li><img style="" src=" {{ asset('uploads/'~ image.name)}} "></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				<div class="description-produit">
+					<div class="">
+						<h2>{{oil.name}}</h2>
+						<div class="name-alt">{{oil.description}}</div>
+					</div>
+					<div class="description">
+						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor ratione modi quos fuga? Officiis recusandae, quis iusto architecto officia animi?</p>
 
-			<div>
-				<h3>{{oil.name}}</h3>
-				<p>
-					<span>Description:</span>
-					{{oil.description}}
-				</p>
-				<ul>
-					<li>
-						<span>Utilisation:</span>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae</p>
-					</li>
-				</ul>
+					</div>
+					<div class="payer">
+						<span class="price">{{oil.price}}
+							€</span>
+						<div class="capacity">
+							<span>25</span>
+							<span class="selected">50</span>
+							<span>100</span>
+						</div>
+						<div class="quantity">
+							<span>-</span>
+							<span>1</span>
+							<span>+</span>
+						</div>
+						<a href="#" class="buy">Acheter</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
