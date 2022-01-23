@@ -219,7 +219,12 @@ details {
 summary {
   font-size: var(--h3-font-size);
 }
-
+.display-mobile {
+  display: block;
+}
+.display-desktop {
+  display: none;
+}
 .success-message {
   background: var(--vert);
   color: var(--blanc);
@@ -336,12 +341,7 @@ main {
 .home-logo {
   margin: auto;
 }
-.display-mobile{
-  display:block;
-}
-.display-desktop {
-  display: none;
-}
+
 .nav-logo {
   height: auto;
   width: 40em;

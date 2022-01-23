@@ -20,9 +20,9 @@
 	</section>
 
 
-	<section class="section">
+	<section class="section oil-section">
 
-		<div class="container-card">
+		<div class="oil-container">
 			{% for oil in oils %}
 				<!-- card -->
 					<div class="card">
@@ -30,14 +30,14 @@
 							<div class="display-mobile">
 								<ul>
 									{% for image in oil.images|slice(0,1) %}
-										<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+										<li><img style="width:300px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
 									{% endfor %}
 								</ul>
 							</div>
 							<div class="slideshow display-desktop">
 								<ul>
 									{% for image in oil.images %}
-										<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+										<li><img style="width:300px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
 									{% endfor %}
 								</ul>
 							</div>

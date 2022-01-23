@@ -13,6 +13,8 @@
 		<link rel="stylesheet" href="/css/carousel.css">
 		<link rel="stylesheet" href="/css/admin.css">
 		<link rel="stylesheet" href="/css/blog.css">
+		<link rel="stylesheet" href="/css/card.css">
+		<link rel="stylesheet" href="/css/product.css">
 		<link
 		rel="icon" type="image/png" href="/assets/logo-removebg-preview.png"/>
 		<!--font-->
@@ -58,8 +60,9 @@
 
 					</ul>
 					<div class="nav-account-mobile">
-						<a href="{{path('home')}}" title="Accueil"><img src="{{ asset('/assets/new-logo-2022.png') }}"></a>
-						<a href="{{path('oils')}}">Découvrir nos Huiles </a>
+						<a href="{{path('home')}}" title="Accueil"><img class="" src="{{ asset('/assets/new-logo-2022.png') }}"></a>
+						<a href="{{path('oils')}}">Découvrir nos Huiles
+						</a>
 						{% if is_granted("ROLE_ADMIN") %}
 							<details>
 								<summary>

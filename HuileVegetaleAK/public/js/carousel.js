@@ -2,7 +2,7 @@
 //desktop
 $(function () {
     setInterval(function () {
-      $(".slideshow ul").animate({ marginLeft: -400 }, 800, function () {
+      $(".slideshow ul").animate({ marginLeft: -300 }, 800, function () {
         $(this)
           .css({ marginLeft: 0 })
           .find("li:last")
