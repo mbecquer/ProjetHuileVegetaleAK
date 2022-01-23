@@ -1,13 +1,6 @@
-.slideshow{
-    display:none;
-}
-.carousel-mobile{
-    padding:1rem;
-}
+
  @media screen and (min-width: 768px){
-.carousel-mobile{
-    display: none;
-}
+
     .slideshow {
         display:block;
         width:400px;

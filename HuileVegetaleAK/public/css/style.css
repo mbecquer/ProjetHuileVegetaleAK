@@ -336,7 +336,10 @@ main {
 .home-logo {
   margin: auto;
 }
-.display-mobile {
+.display-mobile{
+  display:block;
+}
+.display-desktop {
   display: none;
 }
 .nav-logo {
@@ -509,10 +512,14 @@ footer {
 /* -------------------------------------------------------------------------- */
 
 @media screen and (min-width: 768px) {
-  /* nav */
+
   .display-mobile {
+    display: none;
+  }
+  .display-desktop {
     display: block;
   }
+    /* nav */
   #nav-toggle {
     display: none;
   }

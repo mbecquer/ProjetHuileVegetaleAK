@@ -38,7 +38,7 @@
 			<nav>
 				<div class="nav-menu" id="nav-menu">
 					<ul class="nav-list">
-						<a href="{{path('home')}}" title="Accueil" class="display-mobile">Accueil</a>
+						<a href="{{path('home')}}" title="Accueil" class="display-desktop">Accueil</a>
 						{% if is_granted("ROLE_ADMIN") %}
 							<li>
 								<a href="{{path('admin_oils_index')}}" class="nav-link">Admin Huiles</a>

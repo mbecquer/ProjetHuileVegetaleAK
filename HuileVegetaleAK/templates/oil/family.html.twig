@@ -25,34 +25,41 @@
 		<div class="container-card">
 			{% for oil in oils %}
 				<!-- card -->
-				<div class="card">
-					<div class="img">
-						<div class="slideshow">
-							<ul>
-								{% for image in oil.images  %}
-									<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
-								{% endfor %}
-							</ul>
+					<div class="card">
+						<div class="card-img">
+							<div class="display-mobile">
+								<ul>
+									{% for image in oil.images|slice(0,1) %}
+										<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+									{% endfor %}
+								</ul>
+							</div>
+							<div class="slideshow display-desktop">
+								<ul>
+									{% for image in oil.images %}
+										<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+									{% endfor %}
+								</ul>
+							</div>
+							<a href="{{path('oil_read', {id: oil.id,})}}">Voir ce produit</a>
 						</div>
-						<a href="{{path('oil_read', {id: oil.id,})}}">Voir ce produit</a>
-					</div>
-					<div class="info">
-						<div class="name">
-							<h2>{{oil.name}}</h2>
-							<span class="price">{{oil.price}}
-								€</span>
-						</div>
-						<span class="name-alt">{{oil.description}}</span>
-						<div class="description">
-							<h3>Capacité</h3>
-							<span>25</span>
-							<span>50</span>
-							<span>100</span>
-						</div>
+						<div class="card-info">
+							<div class="card-name">
+								<h2>{{oil.name}}</h2>
+								<span class="card-price">{{oil.price}}
+									€</span>
+							</div>
+							<span class="card-name-alt">{{oil.description}}</span>
+							<div class="card-description">
+								<h3>Capacité</h3>
+								<span>25</span>
+								<span>50</span>
+								<span>100</span>
+							</div>
 
+						</div>
 					</div>
-				</div>
-				<!-- fin card -->
+					<!-- fin card -->
 			{% endfor %}
 		</div>
 	</section>

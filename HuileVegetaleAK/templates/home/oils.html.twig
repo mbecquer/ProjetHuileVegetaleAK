@@ -11,7 +11,7 @@
 		<div class="oil-container">
 			<div class="oil-families">
 				<h3 class="section-title">Familles botaniques</h3>
-				<ul>
+				<ul class="display-desktop">
 					{% for family in families %}
 						{% if family.active %}
 							<li>
@@ -21,30 +21,51 @@
 						{% endif %}
 					{% endfor %}
 				</ul>
+				<details class="display-mobile">
+					<summary>Filtrer</summary>
+					<ul>
+					{% for  family in families %}
+						{% if family.active %}
+						<li >
+							<a href="{{path('family_oil',{id:family.id})}}">{{family.name}}
+							</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+					</ul>
+				</details>
+		
 			</div>
 
 			<div class="oil-products">
 				{% for oil in oils %}
 					<!-- card -->
 					<div class="card">
-						<div class="img">
-							<div class="slideshow">
+						<div class="card-img">
+							<div class="display-mobile">
 								<ul>
-									{% for image in oil.images  %}
+									{% for image in oil.images|slice(0,1) %}
+										<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
+									{% endfor %}
+								</ul>
+							</div>
+							<div class="slideshow display-desktop">
+								<ul>
+									{% for image in oil.images %}
 										<li><img style="width:400px;height:100%; object-fit:cover;" src=" {{ asset('uploads/'~ image.name)}} "></li>
 									{% endfor %}
 								</ul>
 							</div>
 							<a href="{{path('oil_read', {id: oil.id,})}}">Voir ce produit</a>
 						</div>
-						<div class="info">
-							<div class="name">
+						<div class="card-info">
+							<div class="card-name">
 								<h2>{{oil.name}}</h2>
-								<span class="price">{{oil.price}}
+								<span class="card-price">{{oil.price}}
 									€</span>
 							</div>
-							<span class="name-alt">{{oil.description}}</span>
-							<div class="description">
+							<span class="card-name-alt">{{oil.description}}</span>
+							<div class="card-description">
 								<h3>Capacité</h3>
 								<span>25</span>
 								<span>50</span>
@@ -58,7 +79,7 @@
 			</div>
 
 		</div>
-		<h3 class="section-title">Méthodes de production</h3>
+		<h2 class="section-title">Méthodes de production</h2>
 		<div class="oil-methode">
 			<div>
 				<h3>Parties utilisées: Graines et oléagineux

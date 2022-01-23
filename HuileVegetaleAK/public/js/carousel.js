@@ -1,3 +1,5 @@
+
+//desktop
 $(function () {
     setInterval(function () {
       $(".slideshow ul").animate({ marginLeft: -400 }, 800, function () {
